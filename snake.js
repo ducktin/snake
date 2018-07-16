@@ -13,6 +13,8 @@ const CANVAS_CELL_HEIGHT = gameCanvas.height / CELL_HEIGHT;
 const SNAKE_COLOUR = 'lightgreen';
 const SNAKE_BORDER_COLOUR = 'darkgreen';
 
+const GAME_TICK = 200;
+
 
 let snake = [{
         x: 8,
@@ -38,13 +40,20 @@ let snake = [{
 
 
 setupGame();
+move();
 
 function setupGame() {
     setupEventListeners();
     clearCanvas();
 
     drawSnake();
-    moveSnakeRight();
+}
+
+function move() {
+    setTimeout(() => {
+        moveSnakeRight();
+        move();
+    }, GAME_TICK);
 }
 
 function setupEventListeners() {
