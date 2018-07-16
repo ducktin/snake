@@ -40,15 +40,21 @@ let snake = [{
 setupGame();
 
 function setupGame() {
-    setupCanvas();
+    setupEventListeners();
     clearCanvas();
+
     drawSnake();
     moveSnakeRight();
 }
 
-function setupCanvas() {
+function setupEventListeners() {
+    document.addEventListener("keypress", moveEventHandler, false);
+}
 
-
+function moveEventHandler(event) {
+    if (event.key === " ") {
+        moveSnakeRight();
+    }
 }
 
 function clearCanvas() {
