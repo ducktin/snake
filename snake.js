@@ -43,23 +43,25 @@ function setupGame() {
     setupCanvas();
     clearCanvas();
     drawSnake();
+    moveSnakeRight();
 }
 
 function setupCanvas() {
 
-    ctx.fillStyle = CANVAS_BACKGROUND_COLOUR;
-    ctx.strokestyle = CANVAS_BORDER_COLOUR;
+
 }
 
 function clearCanvas() {
+    ctx.fillStyle = CANVAS_BACKGROUND_COLOUR;
+    ctx.strokestyle = CANVAS_BORDER_COLOUR;
 
     ctx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
     ctx.strokeRect(0, 0, gameCanvas.width, gameCanvas.height);
 }
 
 function drawSnakePart(snakePart) {
-    ctx.fillStyle = 'lightgreen';
-    ctx.strokestyle = 'darkgreen';
+    ctx.fillStyle = SNAKE_COLOUR;
+    ctx.strokestyle = SNAKE_BORDER_COLOUR;
 
     ctx.fillRect(snakePart.x * CELL_WIDTH, snakePart.y * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
     ctx.strokeRect(snakePart.x * CELL_WIDTH, snakePart.y * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
@@ -67,4 +69,22 @@ function drawSnakePart(snakePart) {
 
 function drawSnake() {
     snake.forEach(drawSnakePart);
+}
+
+function moveSnakeRight() {
+    advanceSnake(1, 0);
+    clearCanvas();
+    drawSnake();
+}
+
+function advanceSnake(xVelocity, yVelocity) {
+
+    const head = {
+        x: snake[0].x + xVelocity,
+        y: snake[0].y + yVelocity
+    };
+
+    snake.unshift(head);
+
+    snake.pop();
 }
