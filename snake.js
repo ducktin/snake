@@ -1,4 +1,5 @@
 var gameCanvas = document.getElementById("gameCanvas");
+var ctx = gameCanvas.getContext("2d");
 
 const CANVAS_BORDER_COLOUR = 'black';
 const CANVAS_BACKGROUND_COLOUR = "white";
@@ -35,17 +36,17 @@ let snake = [{
     }
 ];
 
-// Get the canvas element
-// Return a two dimensional drawing context
-var ctx = gameCanvas.getContext("2d");
-//  Select the colour to fill the canvas
-ctx.fillStyle = CANVAS_BACKGROUND_COLOUR;
-//  Select the colour for the border of the canvas
-ctx.strokestyle = CANVAS_BORDER_COLOUR;
-// Draw a "filled" rectangle to cover the entire canvas
-ctx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
-// Draw a "border" around the entire canvas
-ctx.strokeRect(0, 0, gameCanvas.width, gameCanvas.height);
+function setupCanvas() {
+
+    ctx.fillStyle = CANVAS_BACKGROUND_COLOUR;
+    ctx.strokestyle = CANVAS_BORDER_COLOUR;
+}
+
+function clearCanvas() {
+
+    ctx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+    ctx.strokeRect(0, 0, gameCanvas.width, gameCanvas.height);
+}
 
 function drawSnakePart(snakePart) {
     ctx.fillStyle = 'lightgreen';
