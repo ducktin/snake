@@ -36,6 +36,15 @@ let snake = [{
     }
 ];
 
+
+setupGame();
+
+function setupGame() {
+    setupCanvas();
+    clearCanvas();
+    drawSnake();
+}
+
 function setupCanvas() {
 
     ctx.fillStyle = CANVAS_BACKGROUND_COLOUR;
