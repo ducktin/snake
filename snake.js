@@ -54,11 +54,11 @@ let snake = [{
         y: 4
     }
 ];
-direction = {
+var direction = {
     x: 1,
     y: 0
 };
-
+var paused = false;
 
 setupGame();
 move();
@@ -73,12 +73,15 @@ function setupGame() {
 function move() {
     setTimeout(() => {
         moveSnake(direction);
-        move();
+        if (!paused) {
+            move();
+        }
     }, GAME_TICK);
 }
 
 function setupEventListeners() {
     document.addEventListener("keypress", moveEventHandler, false);
+    document.addEventListener("keypress", pauseEventHandler, false);
 }
 
 function moveEventHandler(event) {
@@ -90,6 +93,21 @@ function moveEventHandler(event) {
         direction = DOWN;
     } else if (event.key === "d") {
         direction = RIGHT;
+    }
+}
+
+function pauseEventHandler(event) {
+    if (event.key === " ") {
+        pausePressed();
+    }
+}
+
+function pausePressed() {
+    if (paused) {
+        paused = false;
+        move();
+    } else {
+        paused = true;
     }
 }
 
