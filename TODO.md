@@ -5,4 +5,4 @@
 - detect hit wall and self
 - spawn fruit
 - snake eat fruit
-- sneak add point
+- snake add point
