@@ -54,10 +54,7 @@ let snake = [{
         y: 4
     }
 ];
-var direction = {
-    x: 1,
-    y: 0
-};
+var direction = RIGHT;
 var paused = false;
 
 setupGame();
