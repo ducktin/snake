@@ -1,6 +1,23 @@
 var gameCanvas = document.getElementById("gameCanvas");
 var ctx = gameCanvas.getContext("2d");
 
+const UP = {
+    x: 0,
+    y: -1
+};
+const LEFT = {
+    x: -1,
+    y: 0
+};
+const DOWN = {
+    x: 0,
+    y: 1
+};
+const RIGHT = {
+    x: 1,
+    y: 0
+};
+
 const CANVAS_BORDER_COLOUR = 'black';
 const CANVAS_BACKGROUND_COLOUR = "white";
 
@@ -37,6 +54,10 @@ let snake = [{
         y: 4
     }
 ];
+direction = {
+    x: 1,
+    y: 0
+};
 
 
 setupGame();
@@ -51,7 +72,7 @@ function setupGame() {
 
 function move() {
     setTimeout(() => {
-        moveSnakeRight();
+        moveSnake(direction);
         move();
     }, GAME_TICK);
 }
@@ -61,8 +82,14 @@ function setupEventListeners() {
 }
 
 function moveEventHandler(event) {
-    if (event.key === " ") {
-        moveSnakeRight();
+    if (event.key === "w") {
+        direction = UP;
+    } else if (event.key === "a") {
+        direction = LEFT;
+    } else if (event.key === "s") {
+        direction = DOWN;
+    } else if (event.key === "d") {
+        direction = RIGHT;
     }
 }
 
@@ -86,8 +113,8 @@ function drawSnake() {
     snake.forEach(drawSnakePart);
 }
 
-function moveSnakeRight() {
-    advanceSnake(1, 0);
+function moveSnake(direction) {
+    advanceSnake(direction.x, direction.y);
     clearCanvas();
     drawSnake();
 }
